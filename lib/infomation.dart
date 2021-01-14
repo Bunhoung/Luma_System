@@ -6,14 +6,9 @@ class Infomation extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    final body = ListView(
-      children: [
-
-      ],
-    );
-
     return Scaffold(
-      body: body,
+      body: Center(
+      )
     );
   }
 

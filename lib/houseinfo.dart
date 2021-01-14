@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:regisrationform/housemember.dart';
+import 'package:regisrationform/login_screen.dart';
 
 class HouseInfo extends StatefulWidget{
   // capture data from this page to show in Infomation Page (not done yet)
@@ -8,10 +9,10 @@ class HouseInfo extends StatefulWidget{
   State<StatefulWidget> createState() {
     return _State();
   }
-
 }
 
 class _State extends State<HouseInfo> {
+
   @override
   Widget build(BuildContext context) {
     final title = Center(
@@ -52,8 +53,14 @@ class _State extends State<HouseInfo> {
             width: 170, height: 60,
             child: RaisedButton(
               child: Text('Exit', style: TextStyle(fontSize: 20)),
-              shape: RoundedRectangleBorder(side: BorderSide(color: Colors.amber), borderRadius: BorderRadius.circular(15)),
-              onPressed: () {},
+              shape: RoundedRectangleBorder(side: BorderSide(color: Colors.amber),
+                  borderRadius: BorderRadius.circular(15)),
+              onPressed: () {
+                Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen())
+                );
+              },
             ),
           ),
         ),
@@ -66,12 +73,14 @@ class _State extends State<HouseInfo> {
             width: 170, height: 60,
             child: RaisedButton(
               child: Text('Next', style: TextStyle(fontSize: 20)),
-              shape: RoundedRectangleBorder(side: BorderSide(color: Colors.amber), borderRadius: BorderRadius.circular(15)),
+              shape: RoundedRectangleBorder(side: BorderSide(
+                  color: Colors.amber), borderRadius: BorderRadius.circular(15)
+              ),
               onPressed: () {
-                Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HouseMember()),
-                );
+                  );
               },
             ),
           ),
@@ -97,10 +106,7 @@ class _State extends State<HouseInfo> {
     String _name;
     return Row(
       children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-          child: Text(label, style: TextStyle(fontSize: 18)
-          ),
+        Text(label, style: TextStyle(fontSize: 18)
         ),
 
         Expanded(
@@ -121,8 +127,8 @@ class _State extends State<HouseInfo> {
               if (value.isEmpty) {
                 return warnning;
               }
+              return null;
             },
-
             onSaved: (String value) {
               _name = value;
             },

@@ -3,23 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:regisrationform/houseinfo.dart';
 import 'package:regisrationform/infolists.dart';
 import 'package:regisrationform/infomation.dart';
-
-import 'housemember.dart';
+import 'package:regisrationform/housemember.dart';
+import 'package:regisrationform/login_screen.dart';
 
 void main (){
   final app = MaterialApp(
-    home: HouseInfo(),
+    home: LoginScreen(),
   );
 
-/*void mian () {
+/*void main () {
   final app = MaterialApp(
     routes: {
       '/': (context) => HouseInfo(),
       '/HouseMember': (context) => HouseMember(),
-      '/ InfoList': (context) => InfoLists(),
-      '/ Information': (context) => Infomation(),
-    },*/
-/*  );*/
+      '/InfoList': (context) => InfoLists(),
+      '/Information': (context) => Infomation(),
+    },
+  );*/
 
   runApp(app);
 }

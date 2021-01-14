@@ -1,48 +1,98 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:regisrationform/housemember.dart';
+import 'package:regisrationform/infomation.dart';
 
 class InfoLists extends StatefulWidget{
+
+  final String name;
+  InfoLists(this.name) : super();
+
   @override
   State<StatefulWidget> createState() {
-    // want to name that user already complete as a stack list
-    return _State();
+
+    // want to name that user already register as a stack list
+    return _State(name);
   }
 
 }
 
 class _State extends State<InfoLists>{
+
+  String personal;
+  _State(this.personal);
+
+  void initState(){
+    setState(() {
+      personal = widget.name;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    final lists = Row( // want to generate the list show name that have
-      // been fill in to the form (not done yet)
-      children: [
-        Container(
-          height: 50,
-          width: 410,
-          color: Colors.blue,
-          child: TextButton(
-            child: Text('First Person', style: TextStyle(fontSize: 18, color: Colors.black),),
-            onPressed: (){
-              // capture Name User that already complete as a stack (not done yet)
-            },
-          ),
-        ),
-      ],
-    );
+    List<String> personlists = [
+      personal
+    ];
 
-    final addmore = Column( // want to let user tap to more to HouseMember Page
-      // to add more member in there house ( not done yet )
+    // ListView.builder(
+    //     itemCount: personlists.length,
+    //     itemBuilder: (context, int index){
+    //       return Container(
+    //         child: ListTile(
+    //           onTap: (){},
+    //           title: Text(personlists[index]),
+    //         ),
+    //       );
+    //     }
+    // );
+
+    final lists = Column(
+        children: [
+          InkWell(
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Infomation()),
+              );
+            },
+            child: Container(
+                height: 48,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 18),
+                  child: Row(
+                    children: personlists.map((overallList) => Text(overallList,
+                        style: TextStyle(fontSize: 20))).toList(),
+                  ),
+                ),
+              alignment: Alignment.centerLeft,
+              ),
+          ),
+          Divider(
+            color: Colors.black,
+            thickness: 0.3,
+          ),
+        ],
+      );
+
+
+    // final lists = Column(
+    //   children: [
+    //     columnlist(),
+    //   ],
+    // );
+
+    final addmore = Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Padding(
           padding: EdgeInsets.all(16),
           child: TextButton(
               onPressed: (){
+                initState();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HouseMember()),
+                  new MaterialPageRoute(builder: (context) => HouseMember()),
                 );
               },
               child: Text('+ Add more Family Member', style: TextStyle(fontSize: 18)),
@@ -84,5 +134,38 @@ class _State extends State<InfoLists>{
       body: body,
     );
   }
+
+  // Widget columnlist(){
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: <Widget> [
+  //       rowlist(context),
+  //       Divider(
+  //         color: Colors.black,
+  //         thickness: 0.5,
+  //       ),
+  //     ],
+  //   );
+  // }
+  //
+  // Widget rowlist (BuildContext context) {
+  //   return InkWell(
+  //     onTap: () {
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => Infomation()),
+  //       );
+  //     },
+  //     child: Container(
+  //       height: 48,
+  //       padding: EdgeInsets.symmetric(horizontal: 18),
+  //       child: Text(widget.name,
+  //         style: TextStyle(
+  //           fontSize: 20,
+  //         ),),
+  //       alignment: Alignment.centerLeft,
+  //     ),
+  //   );
+  // }
 
 }
